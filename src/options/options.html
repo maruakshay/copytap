@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en" class="h-full">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Coptap — snippets</title>
+    <link rel="stylesheet" href="./options.css" />
+  </head>
+  <body
+    class="h-full bg-zinc-50 text-zinc-800 dark:bg-zinc-950 dark:text-zinc-200 antialiased"
+  >
+    <div class="mx-auto max-w-3xl px-5 py-10">
+      <!-- header -->
+      <header class="mb-8 flex items-center gap-3">
+        <img
+          src="./logo.png"
+          alt="Coptap"
+          class="size-11 rounded-2xl shadow-lg shadow-blue-500/30"
+        />
+        <div>
+          <h1 class="text-xl font-semibold tracking-tight">Coptap</h1>
+          <p class="text-sm text-zinc-500 dark:text-zinc-400">
+            Type
+            <code
+              class="rounded bg-zinc-200 px-1.5 py-0.5 font-mono text-[13px] dark:bg-zinc-800"
+              ><span id="ex-prefix">:</span>key</code
+            >
+            in any field to auto-expand · hotkey
+            <code
+              id="hotkey"
+              class="rounded bg-zinc-200 px-1.5 py-0.5 font-mono text-[13px] dark:bg-zinc-800"
+              >Ctrl+Shift+Space</code
+            >
+          </p>
+        </div>
+      </header>
+
+      <!-- prefix + counter bar -->
+      <div
+        class="mb-5 flex flex-wrap items-center gap-4 rounded-2xl border border-zinc-200 bg-white p-4 shadow-sm dark:border-zinc-800 dark:bg-zinc-900"
+      >
+        <label class="flex items-center gap-2 text-sm font-medium">
+          Trigger prefix
+          <input
+            id="prefix"
+            maxlength="3"
+            class="w-14 rounded-lg border border-zinc-300 bg-transparent px-2.5 py-1.5 text-center font-mono outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 dark:border-zinc-700"
+          />
+        </label>
+        <span
+          id="count"
+          class="ml-auto rounded-full bg-zinc-100 px-3 py-1 text-xs font-medium text-zinc-500 dark:bg-zinc-800 dark:text-zinc-400"
+        ></span>
+      </div>
+
+      <!-- snippet list -->
+      <div id="rows" class="flex flex-col gap-3"></div>
+
+      <!-- empty state -->
+      <div
+        id="empty"
+        class="hidden rounded-2xl border border-dashed border-zinc-300 py-12 text-center text-sm text-zinc-400 dark:border-zinc-700"
+      >
+        No snippets yet — add one to get started.
+      </div>
+
+      <!-- actions -->
+      <div class="mt-6 flex flex-wrap items-center gap-2">
+        <button
+          id="add"
+          class="inline-flex items-center gap-1.5 rounded-xl bg-blue-600 px-4 py-2.5 text-sm font-medium text-white shadow-sm transition hover:bg-blue-500 active:scale-[0.98]"
+        >
+          <span class="text-base leading-none">+</span> Add snippet
+        </button>
+        <button
+          id="save"
+          class="inline-flex items-center gap-1.5 rounded-xl border border-zinc-300 bg-white px-4 py-2.5 text-sm font-medium shadow-sm transition hover:bg-zinc-100 active:scale-[0.98] dark:border-zinc-700 dark:bg-zinc-900 dark:hover:bg-zinc-800"
+        >
+          Save changes
+        </button>
+
+        <div class="ml-auto flex items-center gap-2">
+          <span id="status" class="text-sm font-medium text-emerald-600 dark:text-emerald-400"></span>
+          <button
+            id="export"
+            class="rounded-xl border border-zinc-300 bg-white px-3.5 py-2.5 text-sm font-medium shadow-sm transition hover:bg-zinc-100 active:scale-[0.98] dark:border-zinc-700 dark:bg-zinc-900 dark:hover:bg-zinc-800"
+          >
+            Export
+          </button>
+          <button
+            id="import"
+            class="rounded-xl border border-zinc-300 bg-white px-3.5 py-2.5 text-sm font-medium shadow-sm transition hover:bg-zinc-100 active:scale-[0.98] dark:border-zinc-700 dark:bg-zinc-900 dark:hover:bg-zinc-800"
+          >
+            Import
+          </button>
+          <input id="file" type="file" accept="application/json,.json" hidden />
+        </div>
+      </div>
+    </div>
+
+    <!-- row template -->
+    <template id="row-tpl">
+      <div
+        class="group grid grid-cols-[minmax(0,11rem)_1fr_auto] items-start gap-3 rounded-2xl border border-zinc-200 bg-white p-3 shadow-sm transition hover:border-zinc-300 hover:shadow-md dark:border-zinc-800 dark:bg-zinc-900 dark:hover:border-zinc-700"
+      >
+        <input
+          class="key rounded-lg border border-zinc-200 bg-zinc-50 px-3 py-2 font-mono text-sm outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 dark:border-zinc-700 dark:bg-zinc-800"
+          placeholder="linkedin"
+        />
+        <textarea
+          class="val min-h-[40px] resize-y rounded-lg border border-zinc-200 bg-zinc-50 px-3 py-2 text-sm outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 dark:border-zinc-700 dark:bg-zinc-800"
+          rows="1"
+          placeholder="https://linkedin.com/in/you"
+        ></textarea>
+        <button
+          class="del flex size-9 items-center justify-center rounded-lg text-zinc-400 opacity-0 transition hover:bg-red-50 hover:text-red-500 group-hover:opacity-100 dark:hover:bg-red-500/10"
+          title="Delete"
+          aria-label="Delete snippet"
+        >
+          ✕
+        </button>
+      </div>
+    </template>
+
+    <script type="module" src="./options.js"></script>
+  </body>
+</html>

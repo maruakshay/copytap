@@ -1,0 +1,19 @@
+@import "tailwindcss";
+
+/* scan these for class names (Tailwind v4 explicit sources) */
+@source "./options.html";
+@source "./options.ts";
+
+/* sleek extras Tailwind utilities don't cover */
+@layer base {
+  :root {
+    color-scheme: light dark;
+  }
+  /* Tailwind v4 resets button cursor to default — restore pointer */
+  button:not(:disabled),
+  [role="button"]:not(:disabled),
+  label:has(input),
+  select {
+    cursor: pointer;
+  }
+}

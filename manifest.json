@@ -1,0 +1,42 @@
+{
+  "manifest_version": 3,
+  "name": "Coptap — snippet expander",
+  "version": "0.1.0",
+  "description": "Type :key in any field to auto-expand stored snippets. Speed up resume/form writing.",
+  "icons": {
+    "16": "logo.png",
+    "32": "logo.png",
+    "48": "logo.png",
+    "128": "logo.png"
+  },
+  "action": {
+    "default_title": "Coptap snippets",
+    "default_icon": "logo.png"
+  },
+  "permissions": ["storage"],
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"],
+      "run_at": "document_idle",
+      "all_frames": true
+    }
+  ],
+  "options_ui": {
+    "page": "options/options.html",
+    "open_in_tab": true
+  },
+  "commands": {
+    "expand-snippet": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+Space",
+        "mac": "MacCtrl+Shift+Space"
+      },
+      "description": "Expand the :key word before the cursor"
+    }
+  }
+}
