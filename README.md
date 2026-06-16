@@ -2,7 +2,7 @@
   <img src="logo.png" alt="Coptap" width="96" height="96" />
 </p>
 
-<h1 align="center">Coptap — snippet expander</h1>
+<h1 align="center">Copytap — snippet expander</h1>
 
 > Type `:linkedin`, get `https://linkedin.com/in/your-handle`. Instantly, in any text box, on any site.
 
